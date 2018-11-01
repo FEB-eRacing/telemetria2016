@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<style type="text/css">
+${demo.css}
+		</style>
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+
+	    chart: {
+	        type: 'bubble',
+            plotBorderWidth: 1,
+	        plotBackgroundImage: 'http://3.bp.blogspot.com/_7EjrZ1HgTpw/S9ti5aho5tI/AAAAAAAAASs/P-B1SKDkYJs/s1600/5.PNG'
+	    },
+
+	    title: {
+	    	text: ''
+	    },
+		
+	    exporting: {
+			enabled: false
+	    },
+
+	    credits: {
+	    	enabled: false
+	    },
+
+	    legend: {
+	    	enabled: false
+	    },
+
+	    tooltip: {
+	    	enabled: false
+	    },
+
+		
+	    yAxis: {
+            title: {
+                text: ''
+            },
+			floor: 0,
+            tickWidth: 0,
+			max: 100,
+            tickmarkPlacement: 'on',
+            minTickInterval: 100,
+			labels: {
+                enabled: false
+            }
+        },
+	    xAxis: {
+			floor: 0,
+			max: 100,
+            tickWidth: 0,
+			minRange: 100,
+            tickmarkPlacement: 'on',
+            minTickInterval: 100,
+			labels: {
+                enabled: false
+            }
+        },
+
+        plotOptions: {
+            bubble: {
+                //minSize: 3,
+                //maxSize: 50,
+                zMin: 0,
+                zMax: 100
+            }
+        },
+	
+	    series: [{
+	        data: [[79,60,1]],
+            color: '#ffffff',
+			marker: {
+				fillOpacity:1
+			},
+	    }]
+	
+	});
+		setInterval(function () {
+			var chart = $('#container').highcharts();
+			if (chart) {
+				chart.series[0].points[0].update([parseInt(Math.random()*100),parseInt(Math.random()*100),1]);
+			}
+		}, 1000);
+});
+		</script>
+	</head>
+	<body>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-more.js"></script>
+
+<div id="container" style="height: 300px; width: 210px; margin: 0 auto"></div>
+	</body>
+</html>

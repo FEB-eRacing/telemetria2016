@@ -1,0 +1,79 @@
+<?php
+ini_set('display_errors', 0 );
+error_reporting(0);
+class Form {
+	function getIntValue($method, $name)
+	{
+		eval("\$vars = \$_".$method.";");
+		return (int) $vars[$name];
+	}
+	function getFloatValue($method, $name)
+	{
+		eval("\$vars = \$_".$method.";");
+		return (float) $vars[$name];
+	}
+	function getStringValue($method, $name)
+	{
+		eval("\$vars = \$_".$method.";");
+		$vars[$name] = trim($vars[$name]);
+		return (string) $vars[$name];
+	}
+	function getSQLStringValue($method, $name)
+	{
+		$list = ARRAY (
+                    "insert", "select", "update", "delete", "distinct", "having", "truncate", "replace",
+                    "handler", "like", " as ", "or ", "procedure", "limit", "order by", "group by", "asc", "desc"
+        );
+		eval("\$vars = \$_".$method.";");
+		$vars[$name] = trim(str_replace($list, '', ereg_replace("[^a-zA-Z0-9 ]+", "", $vars[$name])));
+		return (string) $vars[$name];	
+	}
+	function isNumeric($method, $name)
+	{
+		eval("\$vars = \$_".$method.";");
+		return is_numeric($vars[$name]);
+	}
+	function isAlphaNumeric($method, $name)
+	{
+		eval("\$vars = \$_".$method.";");
+		if (eregi("[^a-zA-Z0-9]+", $vars[$name]))
+		return false;
+		return true;
+	}
+	function isAlphaNumericWithSpace($method, $name)
+	{
+		eval("\$vars = \$_".$method.";");
+		if (eregi("[^a-zA-Z0-9 ]+", $vars[$name]))
+		return false;
+		return true;
+	}
+}
+function corrigeAcentuacao($texto) {
+	$texto = str_replace("Ã¡", "á", $texto);
+	$texto = str_replace("Ã¢", "â", $texto);
+	$texto = str_replace("Ã£", "ã", $texto);
+	$texto = str_replace("Ã©", "é", $texto);
+	$texto = str_replace("Ãª", "ê", $texto);
+	$texto = str_replace("Ã­", "í", $texto);
+	$texto = str_replace("Ã®", "î", $texto);
+	$texto = str_replace("Ã³", "ó", $texto);
+	$texto = str_replace("Ã´", "ô", $texto);
+	$texto = str_replace("Ãµ ", "õ", $texto);
+	$texto = str_replace("Ãº", "ú", $texto);
+	$texto = str_replace("Ã»", "û", $texto);  
+	$texto = str_replace("Ã?", "Á", $texto);
+	$texto = str_replace("Ã‚", "Â", $texto);
+	$texto = str_replace("Ãƒ", "Ã", $texto);
+	$texto = str_replace("Ã‰", "É", $texto);
+	$texto = str_replace("ÃŠ", "Ê", $texto);
+	$texto = str_replace("Ã?", "Í", $texto);
+	$texto = str_replace("Ã“", "Ó", $texto);
+	$texto = str_replace("Ã”", "Ô", $texto);
+	$texto = str_replace("Ã•", "Õ", $texto);
+	$texto = str_replace("Ãš", "Ú", $texto);  
+	$texto = str_replace("Ã§", "ç", $texto);
+	$texto = str_replace("Ã‡", "Ç", $texto);
+	$texto = str_replace("Âº", "º", $texto);  
+	return $texto;  
+}
+?>

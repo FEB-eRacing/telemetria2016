@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highstock Example</title>
+
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<style type="text/css">
+${demo.css}
+		</style>
+		<script type="text/javascript">
+$(function() {
+	alert( $( ".li" ).toArray() );
+	// Create the chart
+	$('#container').highcharts('StockChart', {
+		
+
+		rangeSelector : {
+			inputEnabled: $('#container').width() > 480,
+			selected : 1
+		},
+
+		title : {
+			text : 'AAPL Stock Price'
+		},
+
+		scrollbar : {
+			enabled : false
+		},
+
+		series : [{
+			name : 'AAPL Stock Price',
+			data : [1,2,3,4,5,6,7,8,3,4,5,6,6,4,3,2,3,4,5,5,6],
+			tooltip: {
+				valueDecimals: 2
+			}
+		}]
+	});
+});
+
+		</script>
+	</head>
+	<body>
+<script src="js/highstock.js"></script>
+<?php
+	echo "<span id=\"teste\">";
+	echo "</span>";
+?>
+
+<div class="li">One</div>
+<div class="li">Two</div>
+<div class="li">Three</div>
+
+<div id="container" style="height: 400px; min-width: 310px"></div>
+	</body>
+</html>
